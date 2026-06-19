@@ -10,6 +10,8 @@ All notable changes to Yield by DexKit.
 
 ### Added
 
+- **Methodology page** (`/methodology`) — balance detection → protocol ID → APY source → yield estimation; linked from footer and calculation modal
+
 - **Blog: Ethereum Foundation staking yield**
   - `/blog/ethereum-foundation-staking-yield` — live EF wallet ETH vs hypothetical Lido staking
   - Dynamic card: `/card/compare-ethereum-foundation-staking.png`

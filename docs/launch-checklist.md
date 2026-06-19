@@ -29,7 +29,8 @@ Pre-launch trust, SEO, and UX milestone. Verify each item before public launch.
 
 ## Trust & UX
 
-- [ ] “How is this calculated?” link visible below earnings summary
+- [ ] “How is this calculated?” link visible below share actions
+- [ ] “Rates updated X minutes ago” visible under yield summary (click for protocol APYs)
 - [ ] Calculation modal includes disclaimer
 - [ ] Supported protocols section visible on homepage
 - [ ] Empty wallet state: “No supported yield positions found…”
@@ -37,7 +38,8 @@ Pre-launch trust, SEO, and UX milestone. Verify each item before public launch.
 - [ ] Dust positions (< $1) hidden by default; totals unchanged
 - [ ] “Hidden dust positions: N — click to reveal” works
 - [ ] Share / Copy Link / Download Card visible near monthly yield (no scroll on mobile)
-- [ ] Footer shows Supported · Roadmap · Open Source · View Source · Powered by DexKit
+- [ ] Footer shows Methodology · Blog · Supported · Roadmap · Open Source · View Source · Powered by DexKit
+- [ ] `/methodology` page explains balance → protocol → APY → estimation flow
 - [ ] Footer disclaimer visible
 - [ ] GitHub link opens https://github.com/DexKit/yield in new tab
 

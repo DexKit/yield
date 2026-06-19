@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { useCallback, useEffect, useRef } from "react";
 import { YIELD_DISCLAIMER } from "@/lib/constants/trust";
 
@@ -59,6 +60,15 @@ export function CalculationModal({ open, onClose }: CalculationModalProps) {
           </ol>
           <p className="text-zinc-500 dark:text-zinc-400">
             These are estimates based on current rates and are not guaranteed.
+          </p>
+          <p>
+            <Link
+              href="/methodology"
+              className="text-emerald-600 underline-offset-2 hover:underline"
+              onClick={handleClose}
+            >
+              Read full methodology →
+            </Link>
           </p>
         </div>
 

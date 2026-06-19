@@ -26,6 +26,7 @@ export const SITEMAP_WALLET_SLUGS = ["vitalik.eth"] as const;
 
 /** Static content pages included in sitemap. */
 export const SITEMAP_CONTENT_PATHS = [
+  "/methodology",
   "/supported",
   "/roadmap",
   "/blog",

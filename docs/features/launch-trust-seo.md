@@ -16,6 +16,7 @@ Pre-launch milestone: increase trust, clarity, shareability, SEO readiness, and 
 | 8 | Disclaimer | Footer + calculation modal (`YIELD_DISCLAIMER`) |
 | 9 | Share optimization | `ShareQuickActions` below monthly yield in `YieldHero` |
 | 10 | Launch checklist | `docs/launch-checklist.md` |
+| 11 | Methodology page | `/methodology` — 4-step flow; footer + calculation modal link |
 
 ## Key files
 

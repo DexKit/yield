@@ -2,6 +2,7 @@ import Link from "next/link";
 import { GITHUB_REPO_URL, YIELD_DISCLAIMER } from "@/lib/constants/trust";
 
 const FOOTER_LINKS = [
+  { href: "/methodology", label: "Methodology" },
   { href: "/blog", label: "Blog" },
   { href: "/supported", label: "Supported" },
   { href: "/roadmap", label: "Roadmap" },

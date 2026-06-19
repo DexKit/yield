@@ -24,6 +24,7 @@ import {
   getCanonicalWalletPath,
   shouldRedirectToCanonical,
 } from "@/lib/seo/wallet-url";
+import { extractProtocolRates } from "@/lib/yield/rates-display";
 import { sanitizeIdentifierParam } from "@/lib/validation/identifier";
 
 /** Revalidate public wallet pages every 5 minutes. */
@@ -98,6 +99,8 @@ export default async function YieldResultPage({ params }: PageProps) {
           summary={result.summary}
           stats={result.stats}
           currency={result.currency}
+          calculatedAt={result.calculatedAt}
+          protocolRates={extractProtocolRates(result.chains)}
           shareContext={shareContext}
         />
 

@@ -11,11 +11,7 @@ export default function HomePage() {
     <div className="mx-auto flex max-w-lg flex-col items-center px-4 py-16 sm:py-24">
       <div className="w-full space-y-10 text-center">
         <div className="space-y-4">
-          <SiteLogo
-            variant="hero"
-            className="mx-auto h-20 w-auto sm:h-24"
-            priority
-          />
+          <SiteLogo variant="hero" priority />
           <h1 className="text-3xl font-bold tracking-tight text-zinc-900 dark:text-zinc-50 sm:text-4xl">
             How much yield does your wallet generate?
           </h1>
