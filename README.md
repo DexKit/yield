@@ -1,36 +1,76 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Yield by DexKit
 
-## Getting Started
+Estimate daily, monthly, and annual DeFi yield for any Ethereum wallet or ENS name.
 
-First, run the development server:
+## Quick start
 
 ```bash
+npm install
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open [http://localhost:3000](http://localhost:3000) and search a wallet or ENS (e.g. `/vitalik.eth`).
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Environment
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+| Variable | Description |
+|----------|-------------|
+| `NEXT_PUBLIC_SITE_URL` | Public origin for canonical URLs and OG (default `https://yield.dexkit.com`) |
+| `ALCHEMY_API_KEY` | Optional RPC key for Ethereum, Base, Arbitrum, Optimism |
 
-## Learn More
+## Public wallet pages
 
-To learn more about Next.js, take a look at the following resources:
+Every searched wallet becomes a permanent, indexable profile:
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+- `yield.dexkit.com/vitalik.eth`
+- `yield.dexkit.com/0x…` (redirects to ENS when available)
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+Features: SSR, canonical URLs, Open Graph images, Schema.org JSON-LD.
 
-## Deploy on Vercel
+See [docs/seo/ARCHITECTURE.md](./docs/seo/ARCHITECTURE.md) for SEO design and future roadmap.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## Embeddable widgets (Phase 1)
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Iframe embeds for third-party sites:
+
+```html
+<iframe
+  src="https://yield.dexkit.com/embed/vitalik.eth?variant=standard"
+  title="Wallet yield"
+  style="width:100%;max-width:420px;border:0;"
+></iframe>
+```
+
+Variants: `compact` · `standard` (default) · `advanced` · `?theme=light|dark|auto`
+
+Public API: `GET /api/yield/vitalik.eth` — JSON yield snapshot (CORS-enabled).
+
+See [docs/widgets/ARCHITECTURE.md](./docs/widgets/ARCHITECTURE.md) for embed docs and Phase 2 `widget.js` plan.
+
+## Shareable yield cards
+
+Dynamic PNG cards for social, GitHub, and blogs:
+
+```markdown
+![Yield](https://yield.dexkit.com/card/vitalik.eth.png)
+```
+
+- `?theme=light|dark` · `?currency=EUR|GBP|BRL`
+- Wallet pages automatically use the card as OpenGraph image
+
+See [docs/cards/ARCHITECTURE.md](./docs/cards/ARCHITECTURE.md) · [ROADMAP.md](./docs/ROADMAP.md) · [CHANGELOG.md](./CHANGELOG.md)
+
+## Social sharing
+
+Share wallet results on X, Telegram, Discord, LinkedIn, or copy the canonical link. Download the yield card PNG directly.
+
+See [docs/share/ARCHITECTURE.md](./docs/share/ARCHITECTURE.md).
+
+## Scripts
+
+```bash
+npm run dev      # Development server
+npm run build    # Production build
+npm run start    # Production server
+npm run lint     # ESLint
+```
