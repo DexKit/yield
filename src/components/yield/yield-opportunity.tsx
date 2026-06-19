@@ -21,38 +21,38 @@ export function YieldOpportunity({ opportunity }: YieldOpportunityProps) {
         <p className="text-xs text-zinc-400">{OPPORTUNITY_DISCLAIMER}</p>
       </div>
 
-      <div className="grid gap-4 text-center sm:grid-cols-3">
-        <div>
-          <p className="text-xs font-medium uppercase tracking-wide text-zinc-500">
+      <dl className="space-y-4">
+        <div className="flex items-baseline justify-between gap-4 border-b border-zinc-200 pb-4 dark:border-zinc-700">
+          <dt className="shrink-0 text-xs font-medium uppercase tracking-wide text-zinc-500">
             Current Yield
-          </p>
-          <p className="mt-1 text-2xl font-bold text-zinc-900 dark:text-zinc-50">
+          </dt>
+          <dd className="text-right text-xl font-bold tabular-nums text-zinc-900 dark:text-zinc-50 sm:text-2xl">
             {formatUsd(summary.currentMonthlyUsd)}
             <span className="text-sm font-normal text-zinc-400">/mo</span>
-          </p>
+          </dd>
         </div>
 
-        <div>
-          <p className="text-xs font-medium uppercase tracking-wide text-zinc-500">
+        <div className="flex items-baseline justify-between gap-4 border-b border-zinc-200 pb-4 dark:border-zinc-700">
+          <dt className="shrink-0 text-xs font-medium uppercase tracking-wide text-zinc-500">
             Yield Opportunity
-          </p>
-          <p className="mt-1 text-2xl font-bold text-emerald-600">
+          </dt>
+          <dd className="text-right text-xl font-bold tabular-nums text-emerald-600 sm:text-2xl">
             {hasOpportunity ? "+" : ""}
             {formatUsd(summary.additionalMonthlyUsd)}
             <span className="text-sm font-normal text-zinc-400">/mo</span>
-          </p>
+          </dd>
         </div>
 
-        <div>
-          <p className="text-xs font-medium uppercase tracking-wide text-zinc-500">
+        <div className="flex items-baseline justify-between gap-4">
+          <dt className="shrink-0 text-xs font-medium uppercase tracking-wide text-zinc-500">
             Potential Total Yield
-          </p>
-          <p className="mt-1 text-2xl font-bold text-zinc-900 dark:text-zinc-50">
+          </dt>
+          <dd className="text-right text-xl font-bold tabular-nums text-zinc-900 dark:text-zinc-50 sm:text-2xl">
             {formatUsd(summary.potentialTotalMonthlyUsd)}
             <span className="text-sm font-normal text-zinc-400">/mo</span>
-          </p>
+          </dd>
         </div>
-      </div>
+      </dl>
 
       {hasOpportunity && items.length > 0 && (
         <div className="space-y-2 border-t border-zinc-200 pt-4 dark:border-zinc-700">
@@ -63,9 +63,9 @@ export function YieldOpportunity({ opportunity }: YieldOpportunityProps) {
             {items.map((item) => (
               <li
                 key={`${item.chainId}-${item.asset}-${item.benchmarkId}`}
-                className="flex items-center justify-between gap-2 rounded-lg border border-zinc-100 bg-white px-3 py-2 text-sm dark:border-zinc-800 dark:bg-zinc-900/50"
+                className="flex flex-col gap-1 rounded-lg border border-zinc-100 bg-white px-3 py-2 text-sm sm:flex-row sm:items-center sm:justify-between sm:gap-2 dark:border-zinc-800 dark:bg-zinc-900/50"
               >
-                <span className="text-zinc-700 dark:text-zinc-300">
+                <span className="min-w-0 text-zinc-700 dark:text-zinc-300">
                   {item.balanceHuman.toLocaleString("en-US", {
                     maximumFractionDigits: 4,
                   })}{" "}
@@ -74,7 +74,7 @@ export function YieldOpportunity({ opportunity }: YieldOpportunityProps) {
                     ({item.chainBadge})
                   </span>
                 </span>
-                <span className="shrink-0 text-right text-xs text-zinc-500">
+                <span className="shrink-0 text-left text-xs text-zinc-500 sm:text-right">
                   {item.benchmarkProtocolName} ~{item.benchmarkApy.toFixed(1)}%
                   · +{formatUsd(item.estimatedMonthlyUsd)}/mo
                 </span>

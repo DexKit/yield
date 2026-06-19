@@ -7,6 +7,7 @@ export type CardThemeId = "light" | "dark";
 /** Implemented and planned card template identifiers. */
 export type CardTypeId =
   | "default"
+  | "scenario"
   | "opportunity"
   | "optimizer"
   | "protocol"
@@ -32,6 +33,10 @@ export interface CardSummary extends YieldSummary {
 export interface CardData {
   cardType: CardTypeId;
   walletLabel: string;
+  subtitle?: string;
+  heroLine?: string;
+  comparisonLine?: string;
+  footerLine?: string;
   summary: CardSummary;
   theme: CardThemeId;
   calculatedAt: string;

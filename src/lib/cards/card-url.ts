@@ -8,6 +8,8 @@ import type { CurrencyCode } from "@/types/currency";
 import { isSupportedCurrency } from "@/lib/services/currency-service";
 import { absoluteUrl } from "@/lib/seo/site";
 
+import { isScenarioCardSlug } from "@/lib/blog/scenario-card-slugs";
+
 const THEMES: CardThemeId[] = ["light", "dark"];
 
 /** Future card suffixes — layouts registered via cardLayoutRegistry when implemented. */
@@ -60,6 +62,10 @@ export function parseCardSlug(rawSlug: string): ParsedCardSlug | null {
 
   const name = decodeURIComponent(rawSlug.slice(0, -4));
   if (!name) return null;
+
+  if (isScenarioCardSlug(name)) {
+    return { wallet: name, cardType: "scenario" };
+  }
 
   for (const [suffix, cardType] of Object.entries(SUFFIX_TO_TYPE)) {
     if (name.endsWith(suffix)) {

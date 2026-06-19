@@ -4,7 +4,46 @@ All notable changes to Yield by DexKit.
 
 ## [Unreleased]
 
+### Changed
+
+- Analytics provider migrated from Plausible to Umami (`NEXT_PUBLIC_UMAMI_WEBSITE_ID`)
+
 ### Added
+
+- **Blog: Ethereum Foundation staking yield**
+  - `/blog/ethereum-foundation-staking-yield` — live EF wallet ETH vs hypothetical Lido staking
+  - Dynamic card: `/card/compare-ethereum-foundation-staking.png`
+
+- **Blog: Strategy vs ETH yield**
+  - `/blog/strategy-ethereum-yield` — shareable post comparing MSTR BTC treasury to hypothetical Lido ETH yield
+  - Dynamic scenario card: `/card/compare-strategy-ethereum.png` (live BTC/ETH prices + Lido APY)
+  - Blog index at `/blog`
+  - Footer link: Blog
+
+- **Public content pages**
+  - `/supported` — active networks, protocols, and planned chain coverage
+  - `/roadmap` — shipped highlights and future roadmap
+  - Footer links: Supported · Roadmap
+  - Sitemap entries for both pages
+
+- **Launch trust, SEO & UX pass (pre-launch milestone)**
+  - “How is this calculated?” modal with disclaimer below earnings summary
+  - Supported protocols & networks section on homepage
+  - Polished empty states (no positions vs unsupported assets)
+  - Dust positions (< $1) hidden by default in position list; totals unchanged
+  - Footer: Open Source · View Source · Powered by DexKit + disclaimer
+  - Share / Copy Link / Download Card moved next to monthly yield (`ShareQuickActions`)
+  - Homepage SEO metadata + `/opengraph-image`
+  - Sitemap seed URLs for homepage + notable wallets
+  - Launch checklist: `docs/launch-checklist.md`
+  - Documentation: `docs/features/launch-trust-seo.md`
+
+- **Privacy analytics (Umami)**
+  - `AnalyticsService` abstraction in `src/analytics/` — swappable provider
+  - Events: `page_view`, `wallet_search`, `share_click`, `download_card`, `yield_opportunity_view`, `api_request`, `chain_detected`, `protocol_detected`
+  - Auto pageview disabled — wallet URLs never sent to Umami
+  - Server-side API tracking on `/api/yield/*` and `/card/*`
+  - Documentation: `docs/analytics.md`
 
 - **Yield Opportunity Engine (Feature #1)**
   - `YieldOpportunityService` — idle asset scan + benchmark APY estimates
@@ -19,7 +58,7 @@ All notable changes to Yield by DexKit.
   - Platforms: X, Telegram, Discord (clipboard), LinkedIn, Copy Link
   - Download Card button → `/card/{wallet}.png`
   - OpenGraph title: `{wallet} generates an estimated ${monthly}/month`
-  - Plausible custom events: `Share Click`, `Card Download`
+  - Umami custom events via `AnalyticsService` (`share_click`, `download_card`)
   - Documentation: `docs/share/ARCHITECTURE.md`
 
 - **Dynamic Yield Cards (Feature #6)**

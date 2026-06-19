@@ -12,6 +12,8 @@
 | OpenGraph card integration | ✅ | Auto `og:image` on wallet pages |
 | Social sharing system | ✅ | Feature #7 — ShareService + SharePanel |
 | Yield opportunity engine | ✅ | Feature #1 — idle asset estimates |
+| Privacy analytics (Umami) | ✅ | `docs/analytics.md` — AnalyticsService |
+| Launch trust, SEO & UX pass | ✅ | `docs/features/launch-trust-seo.md` — pre-launch milestone |
 
 ## In progress / next
 
@@ -19,7 +21,7 @@
 |---------|----------|-------|
 | `widget.js` web component | P1 | See `docs/widgets/ARCHITECTURE.md` |
 | API rate limiting | P1 | Before wide widget distribution |
-| Wallet index + sitemap | P2 | See `docs/seo/ARCHITECTURE.md` |
+| Dynamic wallet sitemap index | P2 | Seed wallets in sitemap; full index TBD |
 | EUR/GBP/BRL on main UI | P2 | Currency service exists for cards |
 
 ## Future — card types (Feature #6 phase 2)

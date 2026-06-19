@@ -3,11 +3,8 @@
 import { Check, Download, Link2, Send } from "lucide-react";
 import { useCallback, useState } from "react";
 import { Button } from "@/components/ui/button";
-import {
-  trackCardDownload,
-  trackShareClick,
-  type ShareAnalyticsPlatform,
-} from "@/lib/analytics/plausible-events";
+import { analyticsService, type SharePlatform } from "@/analytics";
+import type { DownloadCardType } from "@/analytics/events";
 import type { ShareContext } from "@/lib/share/share-service";
 import { shareService } from "@/lib/share/share-service";
 
@@ -15,6 +12,7 @@ interface SharePanelProps {
   context: ShareContext;
   /** Primary: below yield hero. Secondary: page footer. */
   variant?: "primary" | "secondary";
+  cardType?: DownloadCardType;
 }
 
 function XIcon({ className }: { className?: string }) {
@@ -43,13 +41,17 @@ function LinkedInIcon({ className }: { className?: string }) {
   );
 }
 
-export function SharePanel({ context, variant = "primary" }: SharePanelProps) {
+export function SharePanel({
+  context,
+  variant = "primary",
+  cardType = "default",
+}: SharePanelProps) {
   const [copied, setCopied] = useState(false);
   const [discordCopied, setDiscordCopied] = useState(false);
 
   const openShare = useCallback(
-    (platform: ShareAnalyticsPlatform, url: string) => {
-      trackShareClick(platform);
+    (platform: SharePlatform, url: string) => {
+      analyticsService.trackShare(platform);
       window.open(url, "_blank", "noopener,noreferrer,width=600,height=700");
     },
     [],
@@ -57,21 +59,21 @@ export function SharePanel({ context, variant = "primary" }: SharePanelProps) {
 
   const handleCopyLink = useCallback(async () => {
     await navigator.clipboard.writeText(context.canonicalUrl);
-    trackShareClick("copy_link");
+    analyticsService.trackShare("copy_link");
     setCopied(true);
     setTimeout(() => setCopied(false), 2500);
   }, [context.canonicalUrl]);
 
   const handleDiscord = useCallback(async () => {
     await navigator.clipboard.writeText(shareService.getDiscordShareText(context));
-    trackShareClick("discord");
+    analyticsService.trackShare("discord");
     setDiscordCopied(true);
     setTimeout(() => setDiscordCopied(false), 2500);
   }, [context]);
 
   const handleDownloadCard = useCallback(() => {
-    trackCardDownload();
-  }, []);
+    analyticsService.trackDownloadCard(cardType);
+  }, [cardType]);
 
   const isPrimary = variant === "primary";
 

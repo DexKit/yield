@@ -1,14 +1,17 @@
-/** Privacy-friendly analytics via Plausible (no cookies). */
-export function Analytics() {
-  const domain = process.env.NEXT_PUBLIC_PLAUSIBLE_DOMAIN;
+import { getUmamiScriptUrl } from "@/analytics/umami";
 
-  if (!domain) return null;
+/** Privacy-friendly analytics via Umami (no cookies, no auto URL capture). */
+export function Analytics() {
+  const websiteId = process.env.NEXT_PUBLIC_UMAMI_WEBSITE_ID;
+
+  if (!websiteId) return null;
 
   return (
     <script
       defer
-      data-domain={domain}
-      src="https://plausible.io/js/script.js"
+      src={getUmamiScriptUrl()}
+      data-website-id={websiteId}
+      data-auto-track="false"
     />
   );
 }

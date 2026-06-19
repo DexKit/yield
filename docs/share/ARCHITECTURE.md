@@ -70,18 +70,18 @@ Check any wallet:
 Powered by DexKit
 ```
 
-## Analytics (Plausible)
+## Analytics (Umami)
 
-Custom events via `src/lib/analytics/plausible-events.ts`:
+Custom events via `AnalyticsService` (`src/analytics/`). **UI never calls Umami directly.**
 
 | Event | Props |
 |-------|-------|
-| `Share Click` | `platform`: `x` · `telegram` · `discord` · `linkedin` · `copy_link` |
-| `Card Download` | — |
+| `share_click` | `platform`: `x` · `telegram` · `discord` · `linkedin` · `copy_link` |
+| `download_card` | `cardType`: `default` · `opportunity` · `optimizer` |
 
-Requires `NEXT_PUBLIC_PLAUSIBLE_DOMAIN`. No cookies, no user profiling.
+Full event catalog, setup, and dashboard guide: [`docs/analytics.md`](../analytics.md).
 
-Configure goals in Plausible dashboard for these event names.
+Requires `NEXT_PUBLIC_UMAMI_WEBSITE_ID`. No cookies, no user profiling, no wallet data in events.
 
 ## Future share types (not implemented)
 
@@ -99,6 +99,6 @@ Each report gets its own `buildShareContext` variant and optional card URL (`/ca
 
 ```
 src/lib/share/share-service.ts
-src/lib/analytics/plausible-events.ts
+src/analytics/
 src/components/yield/share-panel.tsx
 ```

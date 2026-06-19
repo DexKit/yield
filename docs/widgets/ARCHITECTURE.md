@@ -50,7 +50,7 @@ Message type: `dexkit-yield:resize` · payload: `{ height: number }`.
 ### Embed constraints
 
 - No site header, footer, or navigation
-- No analytics (`Plausible` excluded from embed layout)
+- No analytics (`Umami` excluded from embed layout)
 - Small “Powered by DexKit” footer link
 - `robots: noindex` on `/embed/*` (canonical pages remain at `/[identifier]`)
 - CSP `frame-ancestors *` on embed routes (`next.config.ts`)
@@ -191,7 +191,7 @@ Before wide distribution:
 - [ ] `/embed/vitalik.eth` renders without header/footer
 - [ ] `?variant=compact|standard|advanced` switches layout
 - [ ] `?theme=light|dark` overrides system preference
-- [ ] No Plausible script on embed pages
+- [ ] No Umami script on embed pages
 - [ ] `GET /api/yield/vitalik.eth` returns JSON with CORS headers
 - [ ] iframe `postMessage` updates parent height
 - [ ] Embed page allowed in cross-origin iframe (CSP `frame-ancestors *`)

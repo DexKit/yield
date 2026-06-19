@@ -4,6 +4,8 @@ import type {
   CardSummary,
   CardTypeId,
 } from "@/lib/cards/types";
+import { buildScenarioCardData } from "@/lib/blog/scenario-card-data";
+import { isScenarioCardSlug } from "@/lib/blog/scenario-card-slugs";
 import {
   convertUsdAmount,
   getUsdExchangeRate,
@@ -44,6 +46,10 @@ export const cardDataProvider = {
     cardType: CardTypeId,
     options: CardRenderOptions,
   ): Promise<CardData | null> {
+    if (cardType === "scenario" && isScenarioCardSlug(wallet)) {
+      return buildScenarioCardData(wallet, options);
+    }
+
     const sanitized = sanitizeIdentifierParam(wallet);
     const result = await yieldService.calculateYield(sanitized, "USD");
 

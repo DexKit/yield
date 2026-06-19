@@ -6,6 +6,8 @@ import {
   parseCardTheme,
 } from "@/lib/cards/card-url";
 import type { CardRenderOptions } from "@/lib/cards/types";
+import { AnalyticsEvents } from "@/analytics/events";
+import { trackServerEvent } from "@/analytics/server";
 
 export const runtime = "edge";
 
@@ -21,10 +23,18 @@ export async function GET(
   const parsed = parseCardSlug(slug);
 
   if (!parsed) {
+    void trackServerEvent(AnalyticsEvents.API_REQUEST, {
+      endpoint: "card",
+      status: "error",
+    });
     return new Response("Invalid card URL", { status: 400 });
   }
 
   if (!cardLayoutRegistry.get(parsed.cardType)) {
+    void trackServerEvent(AnalyticsEvents.API_REQUEST, {
+      endpoint: "card",
+      status: "error",
+    });
     return new Response("Card type not yet available", { status: 404 });
   }
 
@@ -41,8 +51,17 @@ export async function GET(
   );
 
   if (!image) {
+    void trackServerEvent(AnalyticsEvents.API_REQUEST, {
+      endpoint: "card",
+      status: "error",
+    });
     return new Response("Wallet not found", { status: 404 });
   }
+
+  void trackServerEvent(AnalyticsEvents.API_REQUEST, {
+    endpoint: "card",
+    status: "success",
+  });
 
   return image;
 }

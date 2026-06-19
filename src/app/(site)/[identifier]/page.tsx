@@ -1,11 +1,17 @@
 import type { Metadata } from "next";
 import { notFound, redirect } from "next/navigation";
+import {
+  uniqueNormalizedChains,
+  uniqueNormalizedProtocols,
+} from "@/analytics";
+import { WalletPageTracker } from "@/components/analytics/wallet-page-tracker";
 import { JsonLd } from "@/components/seo/json-ld";
 import { SharePanel } from "@/components/yield/share-panel";
 import { YieldDetails } from "@/components/yield/yield-details";
 import { YieldOpportunity } from "@/components/yield/yield-opportunity";
 import { SearchForm } from "@/components/yield/search-form";
 import { WalletInfo } from "@/components/yield/wallet-info";
+import { WalletPageTitle } from "@/components/yield/wallet-page-title";
 import { YieldHero } from "@/components/yield/yield-hero";
 import { getCachedWalletYield, getCachedYieldOpportunity } from "@/lib/seo/cached-yield";
 import { shareService } from "@/lib/share/share-service";
@@ -13,7 +19,6 @@ import { buildWalletStructuredData } from "@/lib/seo/structured-data";
 import {
   buildWalletPageMetadata,
   getWalletMetaDescription,
-  getWalletPageTitle,
 } from "@/lib/seo/wallet-metadata";
 import {
   getCanonicalWalletPath,
@@ -63,16 +68,28 @@ export default async function YieldResultPage({ params }: PageProps) {
     result.address,
     result.summary,
   );
+  const analyticsChains = uniqueNormalizedChains(
+    result.chains.map((chain) => chain.chainId),
+  );
+  const analyticsProtocols = uniqueNormalizedProtocols(
+    result.chains.flatMap((chain) =>
+      chain.protocols.map((protocol) => protocol.protocolId),
+    ),
+  );
 
   return (
     <>
+      <WalletPageTracker
+        chains={analyticsChains}
+        protocols={analyticsProtocols}
+        hasOpportunity={opportunity.hasOpportunity}
+        additionalMonthlyUsd={opportunity.summary.additionalMonthlyUsd}
+      />
       <JsonLd data={structuredData} />
 
       <div className="mx-auto max-w-lg space-y-12 px-4 py-12">
         <header className="space-y-6 text-center">
-          <h1 className="text-2xl font-bold tracking-tight text-zinc-900 dark:text-zinc-50 sm:text-3xl">
-            {getWalletPageTitle(result)}
-          </h1>
+          <WalletPageTitle result={result} />
           <p className="text-sm text-zinc-500">{getWalletMetaDescription(result)}</p>
           <WalletInfo result={result} />
         </header>
@@ -81,13 +98,21 @@ export default async function YieldResultPage({ params }: PageProps) {
           summary={result.summary}
           stats={result.stats}
           currency={result.currency}
+          shareContext={shareContext}
         />
 
         <YieldOpportunity opportunity={opportunity} />
 
-        <SharePanel context={shareContext} variant="primary" />
-
-        <YieldDetails chains={result.chains} />
+        <YieldDetails
+          chains={result.chains}
+          emptyStateVariant={
+            result.stats.protocolCount === 0
+              ? opportunity.hasDetectedAssets
+                ? "unsupported-assets"
+                : "empty"
+              : null
+          }
+        />
 
         <SharePanel context={shareContext} variant="secondary" />
 

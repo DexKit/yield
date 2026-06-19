@@ -2,6 +2,10 @@
 
 import { useRouter } from "next/navigation";
 import { useState } from "react";
+import {
+  analyticsService,
+  classifyWalletSearchType,
+} from "@/analytics";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { identifierSchema } from "@/lib/validation/identifier";
@@ -20,12 +24,21 @@ export function SearchForm({ defaultValue = "" }: SearchFormProps) {
     e.preventDefault();
     setError(null);
 
-    const result = identifierSchema.safeParse(value);
+    const trimmed = value.trim();
+    const result = identifierSchema.safeParse(trimmed);
     if (!result.success) {
+      analyticsService.trackWalletSearch(
+        classifyWalletSearchType(trimmed),
+        "error",
+      );
       setError(result.error.issues[0]?.message ?? "Invalid input");
       return;
     }
 
+    analyticsService.trackWalletSearch(
+      classifyWalletSearchType(result.data),
+      "success",
+    );
     setLoading(true);
     const encoded = encodeURIComponent(result.data.trim());
     router.push(`/${encoded}`);

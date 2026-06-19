@@ -43,3 +43,21 @@ export function truncateAddress(address: string): string {
   if (address.length < 12) return address;
   return `${address.slice(0, 6)}…${address.slice(-4)}`;
 }
+
+/** Compact USD for headlines ($1.2B, $45M). */
+export function formatCompactUsd(amount: number, currency: CurrencyCode = "USD"): string {
+  const symbol = currency === "USD" ? "$" : currency === "EUR" ? "€" : currency === "GBP" ? "£" : "R$";
+  const abs = Math.abs(amount);
+  if (abs >= 1e9) return `${symbol}${(amount / 1e9).toFixed(1)}B`;
+  if (abs >= 1e6) return `${symbol}${(amount / 1e6).toFixed(1)}M`;
+  if (abs >= 1e3) return `${symbol}${(amount / 1e3).toFixed(0)}K`;
+  return formatMoney(amount, currency);
+}
+
+/** Compact token amounts (528k, 1.2M). */
+export function formatCompactAmount(amount: number): string {
+  const abs = Math.abs(amount);
+  if (abs >= 1e6) return `${(amount / 1e6).toFixed(1)}M`;
+  if (abs >= 1e3) return `${(amount / 1e3).toFixed(0)}k`;
+  return amount.toLocaleString("en-US", { maximumFractionDigits: 0 });
+}

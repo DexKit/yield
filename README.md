@@ -16,6 +16,8 @@ Open [http://localhost:3000](http://localhost:3000) and search a wallet or ENS (
 | Variable | Description |
 |----------|-------------|
 | `NEXT_PUBLIC_SITE_URL` | Public origin for canonical URLs and OG (default `https://yield.dexkit.com`) |
+| `NEXT_PUBLIC_UMAMI_WEBSITE_ID` | Umami website UUID for privacy-friendly analytics (optional) |
+| `NEXT_PUBLIC_UMAMI_SCRIPT_URL` | Umami tracker script URL (optional; defaults to Umami Cloud) |
 | `ALCHEMY_API_KEY` | Optional RPC key for Ethereum, Base, Arbitrum, Optimism |
 
 ## Public wallet pages
@@ -65,6 +67,12 @@ See [docs/cards/ARCHITECTURE.md](./docs/cards/ARCHITECTURE.md) · [ROADMAP.md](.
 Share wallet results on X, Telegram, Discord, LinkedIn, or copy the canonical link. Download the yield card PNG directly.
 
 See [docs/share/ARCHITECTURE.md](./docs/share/ARCHITECTURE.md).
+
+## Analytics
+
+Privacy-friendly usage metrics via Umami — searches, page types, shares, chains, protocols, and API usage without wallet identifiers.
+
+See [docs/analytics.md](./docs/analytics.md).
 
 ## Scripts
 

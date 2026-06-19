@@ -1,4 +1,6 @@
 import { NextResponse } from "next/server";
+import { AnalyticsEvents } from "@/analytics/events";
+import { trackServerEvent } from "@/analytics/server";
 import { serializeWalletYield } from "@/lib/api/serialize-yield";
 import { getCachedWalletYield } from "@/lib/seo/cached-yield";
 
@@ -23,11 +25,21 @@ export async function GET(_request: Request, context: RouteContext) {
   const result = await getCachedWalletYield(wallet);
 
   if (!result) {
+    void trackServerEvent(AnalyticsEvents.API_REQUEST, {
+      endpoint: "wallet_yield",
+      status: "error",
+    });
+
     return NextResponse.json(
       { error: "Wallet not found or could not be resolved" },
       { status: 404, headers: CORS_HEADERS },
     );
   }
+
+  void trackServerEvent(AnalyticsEvents.API_REQUEST, {
+    endpoint: "wallet_yield",
+    status: "success",
+  });
 
   return NextResponse.json(serializeWalletYield(result), {
     headers: {

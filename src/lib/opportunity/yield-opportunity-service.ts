@@ -65,6 +65,8 @@ export class YieldOpportunityService {
       (b) => b.valueUsd >= OPPORTUNITY_MIN_VALUE_USD,
     );
 
+    const hasDetectedAssets = eligible.length > 0;
+
     const items: OpportunityLineItem[] = [];
 
     for (const balance of eligible) {
@@ -103,6 +105,7 @@ export class YieldOpportunityService {
       summary,
       hasOpportunity:
         summary.additionalMonthlyUsd >= OPPORTUNITY_MIN_VALUE_USD / 12,
+      hasDetectedAssets,
     };
   }
 }

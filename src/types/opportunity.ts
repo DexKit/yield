@@ -45,6 +45,8 @@ export interface YieldOpportunityResult {
   items: OpportunityLineItem[];
   summary: YieldOpportunitySummary;
   hasOpportunity: boolean;
+  /** True when idle token balances were detected (even if no yield opportunity). */
+  hasDetectedAssets: boolean;
 }
 
 /** Minimum idle balance value (USD) to include in opportunity estimates. */

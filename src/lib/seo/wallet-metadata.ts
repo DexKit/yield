@@ -3,7 +3,6 @@ import { formatUsd } from "@/lib/utils";
 import { getWalletCardImageAbsoluteUrl } from "@/lib/cards/card-url";
 import { CARD_HEIGHT, CARD_WIDTH } from "@/lib/cards/constants";
 import {
-  getOpenGraphShareDescription,
   getOpenGraphShareTitle,
 } from "@/lib/share/share-copy";
 import type { WalletYieldResult } from "@/types/yield";
@@ -20,10 +19,7 @@ export function getWalletPageTitle(result: WalletYieldResult): string {
 
 export function getWalletMetaDescription(result: WalletYieldResult): string {
   const wallet = getWalletDisplayName(result);
-  const daily = formatUsd(result.summary.dailyUsd);
-  const monthly = formatUsd(result.summary.monthlyUsd);
-  const yearly = formatUsd(result.summary.yearlyUsd);
-  return `See estimated daily, monthly and annual yield for ${wallet}. Currently ${daily}/day, ${monthly}/month and ${yearly}/year across DeFi protocols.`;
+  return `See estimated daily, monthly and yearly yield for ${wallet}.`;
 }
 
 export function buildWalletPageMetadata(result: WalletYieldResult): Metadata {
@@ -33,7 +29,6 @@ export function buildWalletPageMetadata(result: WalletYieldResult): Metadata {
     getWalletDisplayName(result),
     formatUsd(result.summary.monthlyUsd),
   );
-  const socialDescription = getOpenGraphShareDescription();
   const canonicalUrl = getCanonicalWalletUrl(result);
   const wallet = getCanonicalWalletSlug(result);
   const cardImageUrl = getWalletCardImageAbsoluteUrl(wallet, { theme: "dark" });
@@ -51,7 +46,7 @@ export function buildWalletPageMetadata(result: WalletYieldResult): Metadata {
       siteName: SITE_NAME,
       url: canonicalUrl,
       title: socialTitle,
-      description: socialDescription,
+      description: pageDescription,
       locale: "en_US",
       images: [
         {
@@ -65,7 +60,7 @@ export function buildWalletPageMetadata(result: WalletYieldResult): Metadata {
     twitter: {
       card: "summary_large_image",
       title: socialTitle,
-      description: socialDescription,
+      description: pageDescription,
       images: [cardImageUrl],
     },
     robots: {

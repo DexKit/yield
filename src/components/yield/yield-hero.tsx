@@ -1,11 +1,15 @@
 import { formatUsd } from "@/lib/utils";
 import type { CurrencyCode } from "@/types/currency";
 import type { YieldPortfolioStats, YieldSummary } from "@/types/yield";
+import { CalculationLink } from "./calculation-link";
+import { ShareQuickActions } from "./share-quick-actions";
+import type { ShareContext } from "@/lib/share/share-service";
 
 interface YieldHeroProps {
   summary: YieldSummary;
   stats: YieldPortfolioStats;
   currency?: CurrencyCode;
+  shareContext?: ShareContext;
 }
 
 function formatPortfolioContext(stats: YieldPortfolioStats): string {
@@ -15,7 +19,12 @@ function formatPortfolioContext(stats: YieldPortfolioStats): string {
   return `Across ${protocolCount} ${protocolLabel} on ${chainCount} ${chainLabel}`;
 }
 
-export function YieldHero({ summary, stats, currency = "USD" }: YieldHeroProps) {
+export function YieldHero({
+  summary,
+  stats,
+  currency = "USD",
+  shareContext,
+}: YieldHeroProps) {
   const hasPositions = stats.protocolCount > 0;
 
   return (
@@ -37,6 +46,11 @@ export function YieldHero({ summary, stats, currency = "USD" }: YieldHeroProps) 
           <p className="text-5xl font-bold tracking-tight text-emerald-600 sm:text-6xl">
             {formatUsd(summary.monthlyUsd, currency)}
           </p>
+          {shareContext && (
+            <div className="mt-4">
+              <ShareQuickActions context={shareContext} />
+            </div>
+          )}
         </div>
 
         <div>
@@ -52,9 +66,9 @@ export function YieldHero({ summary, stats, currency = "USD" }: YieldHeroProps) 
         </div>
       </div>
 
-      <p className="text-sm text-zinc-400">
-        Based on current balances and protocol yields.
-      </p>
+      <div className="space-y-2">
+        <CalculationLink />
+      </div>
     </section>
   );
 }

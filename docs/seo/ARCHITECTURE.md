@@ -64,9 +64,13 @@ Builder: `src/lib/seo/structured-data.ts`.
 | File | Role |
 |------|------|
 | `src/app/robots.ts` | Allow all agents; point to sitemap |
-| `src/app/sitemap.ts` | Homepage seed only (wallet URLs discovered via links + future index) |
+| `src/app/sitemap.ts` | Homepage + seed wallet slugs + `/supported`, `/roadmap` |
+| `src/app/(site)/opengraph-image.tsx` | Homepage OG image (1200×630) |
+| `src/lib/seo/home-metadata.ts` | Homepage canonical, og, twitter metadata |
 
 **Env:** `NEXT_PUBLIC_SITE_URL` (default `https://yield.dexkit.com`) drives canonical URLs, OG URLs, and sitemap.
+
+**Launch checklist:** `docs/launch-checklist.md`
 
 ---
 
