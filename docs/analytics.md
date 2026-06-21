@@ -44,11 +44,16 @@ Future providers: implement `AnalyticsProvider` in `umami.ts` (or a sibling file
 
 ### `page_view`
 
+Two payloads are sent on each navigation (privacy-safe):
+
+1. **Umami pageview** (`umami.track({ url, title })`) — powers **Overview** (visitors, views, bounce rate). Wallet URLs are sanitized to `/wallet` (never ENS or `0x…` paths).
+2. **Custom event** `page_view` with property `pageType` — powers the **Events** tab breakdown.
+
 | Property | Values |
 |----------|--------|
 | `pageType` | `home` · `wallet` · `compare` · `other` |
 
-Fired on App Router navigations via `PageViewTracker` in the site layout.
+Fired on App Router navigations via `PageViewTracker` in the site layout. Auto pageview capture is disabled (`data-auto-track="false"`).
 
 ### `wallet_search`
 
@@ -132,9 +137,20 @@ Defined in `ReservedAnalyticsEvents` for future features:
    For self-hosted Umami, point the script URL at your instance (e.g. `https://analytics.example.com/script.js`). Server-side events use the same host (`/api/send`).
 
 4. Deploy. The script loads from `(site)/layout.tsx` only — **embed routes exclude analytics** (see `docs/widgets/ARCHITECTURE.md`).
-5. In Umami → **Events**, verify custom events appear after traffic. Use the **Properties** tab to filter by `platform`, `chain`, `protocol`, etc.
+5. In Umami:
+   - **Overview** — visitors and pageviews (sanitized URLs like `/`, `/wallet`, `/blog`)
+   - **Events** — custom events (`wallet_search`, `share_click`, `page_view`, etc.) and Properties filters
+6. Without `NEXT_PUBLIC_UMAMI_WEBSITE_ID`, all tracking no-ops safely (dev-friendly).
 
-Without `NEXT_PUBLIC_UMAMI_WEBSITE_ID`, all tracking no-ops safely (dev-friendly).
+## Overview vs Events
+
+| Umami screen | What populates it |
+|--------------|-------------------|
+| **Overview** (visitors, views) | Manual pageviews via `umami.track({ url, title })` |
+| **Events** | Custom events via `umami.track('event_name', { … })` |
+| **Pages** | Sanitized paths only — `/wallet`, not `/vitalik.eth` |
+
+If Overview is empty but Events works, pageviews were not being sent (fixed in v0.1+ by dual pageview + event tracking).
 
 ## Dashboard interpretation
 

@@ -47,12 +47,55 @@ export function classifyPageType(pathname: string): PageViewType {
   const topSegment = path.split("/").filter(Boolean)[0];
   if (
     topSegment &&
-    !["embed", "card", "api", "_next"].includes(topSegment)
+    ![
+      "embed",
+      "card",
+      "api",
+      "_next",
+      "blog",
+      "roadmap",
+      "supported",
+      "methodology",
+    ].includes(topSegment)
   ) {
     return "wallet";
   }
 
   return "other";
+}
+
+/** Privacy-safe URL for Umami pageviews — never wallet or ENS paths. */
+export function sanitizeAnalyticsPath(pathname: string): string {
+  const path = pathname.split("?")[0] ?? "/";
+  const pageType = classifyPageType(pathname);
+
+  switch (pageType) {
+    case "home":
+      return "/";
+    case "wallet":
+      return "/wallet";
+    case "compare":
+      return path.startsWith("/compare/") ? path : "/compare";
+    default:
+      if (
+        path.startsWith("/embed/") ||
+        path.startsWith("/card/") ||
+        path.startsWith("/api/")
+      ) {
+        return "/other";
+      }
+      return path.length > 96 ? "/other" : path;
+  }
+}
+
+export function sanitizeAnalyticsTitle(pageType: PageViewType): string {
+  const titles: Record<PageViewType, string> = {
+    home: "Yield by DexKit",
+    wallet: "Wallet yield",
+    compare: "Protocol comparison",
+    other: "Yield by DexKit",
+  };
+  return titles[pageType];
 }
 
 export function classifyWalletSearchType(input: string): WalletSearchType {

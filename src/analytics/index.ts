@@ -20,6 +20,8 @@ export {
   classifyWalletSearchType,
   normalizeChainForAnalytics,
   normalizeProtocolForAnalytics,
+  sanitizeAnalyticsPath,
+  sanitizeAnalyticsTitle,
   uniqueNormalizedChains,
   uniqueNormalizedProtocols,
 } from "@/analytics/normalize";

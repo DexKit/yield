@@ -9,10 +9,7 @@ import {
   type WalletSearchResultType,
   type WalletSearchType,
 } from "@/analytics/events";
-import {
-  bucketOpportunityRange,
-  classifyPageType,
-} from "@/analytics/normalize";
+import { bucketOpportunityRange } from "@/analytics/normalize";
 import {
   createUmamiProvider,
   type AnalyticsProvider,
@@ -26,9 +23,7 @@ export class AnalyticsService {
   }
 
   trackPageView(pathname = "/"): void {
-    this.provider.track(AnalyticsEvents.PAGE_VIEW, {
-      pageType: classifyPageType(pathname),
-    });
+    this.provider.trackPageView(pathname);
   }
 
   trackWalletSearch(
