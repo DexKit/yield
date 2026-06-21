@@ -193,7 +193,7 @@ export function SharePanel({
       </div>
 
       {copied && isPrimary && (
-        <p className="text-center text-sm text-emerald-600" role="status">
+        <p className="text-center text-sm text-yield-accent" role="status">
           Link copied to clipboard
         </p>
       )}

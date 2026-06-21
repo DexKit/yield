@@ -64,7 +64,7 @@ export function CalculationModal({ open, onClose }: CalculationModalProps) {
           <p>
             <Link
               href="/methodology"
-              className="text-emerald-600 underline-offset-2 hover:underline"
+              className="text-yield-accent underline-offset-2 hover:underline"
               onClick={handleClose}
             >
               Read full methodology →

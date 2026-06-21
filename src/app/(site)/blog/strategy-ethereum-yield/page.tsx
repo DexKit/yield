@@ -101,7 +101,7 @@ export default async function StrategyEthereumYieldPost() {
       <dl className="grid grid-cols-3 gap-4 text-center">
         <div className="rounded-lg border border-zinc-100 bg-zinc-50 p-4 dark:border-zinc-800 dark:bg-zinc-900/50">
           <dt className="text-xs uppercase tracking-wider text-zinc-400">Monthly</dt>
-          <dd className="mt-1 text-2xl font-bold text-emerald-600 sm:text-3xl">
+          <dd className="mt-1 text-2xl font-bold text-yield-accent sm:text-3xl">
             {formatMoney(data.monthlyYieldUsd)}
           </dd>
         </div>
@@ -127,7 +127,7 @@ export default async function StrategyEthereumYieldPost() {
         Card updates live with BTC/ETH prices and Lido APY.{" "}
         <Link
           href={cardPath}
-          className="text-emerald-600 underline-offset-2 hover:underline"
+          className="text-yield-accent underline-offset-2 hover:underline"
         >
           Open PNG
         </Link>

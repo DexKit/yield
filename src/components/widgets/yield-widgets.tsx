@@ -32,7 +32,7 @@ export function CompactWidget({ result }: CompactWidgetProps) {
         <p className="text-xs font-medium uppercase tracking-wide text-zinc-500">
           Monthly Yield
         </p>
-        <p className="mt-1 text-3xl font-bold tracking-tight text-emerald-600 sm:text-4xl">
+        <p className="mt-1 text-3xl font-bold tracking-tight text-yield-accent sm:text-4xl">
           {formatUsd(result.summary.monthlyUsd)}
         </p>
       </div>
@@ -62,7 +62,7 @@ export function StandardWidget({ result }: StandardWidgetProps) {
           <dt className="text-[10px] font-medium uppercase tracking-wide text-zinc-500">
             Monthly
           </dt>
-          <dd className="mt-1 text-xl font-bold text-emerald-600">
+          <dd className="mt-1 text-xl font-bold text-yield-accent">
             {formatUsd(summary.monthlyUsd)}
           </dd>
         </div>
@@ -120,7 +120,7 @@ export function AdvancedWidget({ result }: AdvancedWidgetProps) {
                   {protocol.positionCount === 1 ? "position" : "positions"}
                 </p>
               </div>
-              <span className="shrink-0 text-sm font-medium text-emerald-600">
+              <span className="shrink-0 text-sm font-medium text-yield-accent">
                 {formatUsd(protocol.monthlyYieldUsd)}/mo
               </span>
             </li>

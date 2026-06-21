@@ -78,7 +78,7 @@ const PositionCard = memo(function PositionCard({
         <dt className="text-zinc-500">Estimated APY</dt>
         <dd className="text-right font-medium">{formatApy(apy)}</dd>
         <dt className="text-zinc-500">Monthly Yield</dt>
-        <dd className="text-right font-medium text-emerald-600">
+        <dd className="text-right font-medium text-yield-accent">
           {apy !== null ? formatUsd(monthlyYieldUsd) : "—"}
         </dd>
       </dl>
@@ -102,7 +102,7 @@ const ProtocolSection = memo(function ProtocolSection({
         <h4 className="font-medium text-zinc-900 dark:text-zinc-100">
           {protocol.protocolName}
         </h4>
-        <span className="text-sm font-medium text-emerald-600">
+        <span className="text-sm font-medium text-yield-accent">
           {formatUsd(protocol.monthlyYieldUsd)}/mo
         </span>
       </div>
@@ -145,7 +145,7 @@ const ChainSection = memo(function ChainSection({
         <div className="flex flex-1 items-center gap-2 text-left">
           <ChainBadge badge={chain.chainBadge} />
           <span className="font-semibold">{chain.chainName}</span>
-          <span className="ml-auto text-sm font-medium text-emerald-600">
+          <span className="ml-auto text-sm font-medium text-yield-accent">
             {formatUsd(chain.monthlyYieldUsd)}/mo
           </span>
         </div>
@@ -156,7 +156,7 @@ const ChainSection = memo(function ChainSection({
             <dt className="text-zinc-500">Value</dt>
             <dd className="text-right font-medium">{formatUsd(chain.totalValueUsd)}</dd>
             <dt className="text-zinc-500">Monthly Yield</dt>
-            <dd className="text-right font-medium text-emerald-600">
+            <dd className="text-right font-medium text-yield-accent">
               {formatUsd(chain.monthlyYieldUsd)}
             </dd>
             <dt className="text-zinc-500">Protocols</dt>
@@ -222,7 +222,7 @@ export function YieldDetails({ chains, emptyStateVariant }: YieldDetailsProps) {
         <button
           type="button"
           onClick={() => setShowDust(true)}
-          className="mx-auto block text-sm text-emerald-600 underline-offset-2 hover:underline"
+          className="mx-auto block text-sm text-yield-accent underline-offset-2 hover:underline"
         >
           Hidden dust positions: {dustCount} — click to reveal
         </button>
@@ -251,7 +251,7 @@ export function YieldDetails({ chains, emptyStateVariant }: YieldDetailsProps) {
         <button
           type="button"
           onClick={() => setShowDust(true)}
-          className="mx-auto block text-sm text-zinc-500 underline-offset-2 transition-colors hover:text-emerald-600 hover:underline"
+          className="mx-auto block text-sm text-zinc-500 underline-offset-2 transition-colors hover:text-yield-accent hover:underline"
         >
           Hidden dust positions: {dustCount} — click to reveal
         </button>

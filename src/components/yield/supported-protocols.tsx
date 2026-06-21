@@ -45,7 +45,7 @@ export function SupportedProtocols() {
       <p>
         <Link
           href="/supported"
-          className="text-xs text-emerald-600 underline-offset-2 hover:underline"
+          className="text-xs text-yield-accent underline-offset-2 hover:underline"
         >
           View full coverage →
         </Link>

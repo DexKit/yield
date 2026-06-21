@@ -11,7 +11,7 @@ export function CalculationLink() {
       <button
         type="button"
         onClick={() => setOpen(true)}
-        className="text-sm text-emerald-600 underline-offset-2 transition-colors hover:text-emerald-700 hover:underline dark:text-emerald-500 dark:hover:text-emerald-400"
+        className="text-sm text-yield-accent text-yield-accent-hover underline-offset-2 transition-colors hover:underline"
       >
         How is this calculated?
       </button>

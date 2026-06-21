@@ -14,8 +14,8 @@ const LOGO_ASSETS = {
 } as const;
 
 const VARIANT_CLASS: Record<SiteLogoVariant, string> = {
-  header: "block h-8 w-8 shrink-0 object-contain",
-  hero: "mx-auto block h-28 w-auto shrink-0 sm:h-32",
+  header: "block h-8 w-8 shrink-0 object-contain dark:brightness-110",
+  hero: "mx-auto block h-28 w-auto shrink-0 sm:h-32 dark:brightness-110",
 };
 
 /** Native img keeps PNG alpha; Next/Image WebP optimization adds a black matte. */

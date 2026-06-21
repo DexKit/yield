@@ -18,7 +18,7 @@ function FooterLink({
   external?: boolean;
 }) {
   const className =
-    "transition-colors hover:text-emerald-600 dark:hover:text-emerald-500";
+    "transition-colors hover:text-yield-accent";
 
   if (external) {
     return (

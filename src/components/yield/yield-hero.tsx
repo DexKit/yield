@@ -49,7 +49,7 @@ export function YieldHero({
 
         <div>
           <p className="text-sm text-zinc-500">Monthly</p>
-          <p className="text-5xl font-bold tracking-tight text-emerald-600 sm:text-6xl">
+          <p className="text-5xl font-bold tracking-tight text-yield-accent sm:text-6xl">
             {formatUsd(summary.monthlyUsd, currency)}
           </p>
         </div>

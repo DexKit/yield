@@ -39,7 +39,7 @@ export default function SupportedPage() {
             >
               <div className="mb-2 flex items-center gap-2">
                 <CoverageChip label={network.name} />
-                <span className="text-xs font-medium uppercase tracking-wider text-emerald-600">
+                <span className="text-xs font-medium uppercase tracking-wider text-yield-accent">
                   Active
                 </span>
               </div>
@@ -101,7 +101,7 @@ export default function SupportedPage() {
           Want to know when new chains ship?{" "}
           <Link
             href="/roadmap"
-            className="text-emerald-600 underline-offset-2 hover:underline"
+            className="text-yield-accent underline-offset-2 hover:underline"
           >
             View the roadmap
           </Link>

@@ -63,7 +63,7 @@ export function ContentBackLink() {
     <p className="text-center">
       <Link
         href="/"
-        className="text-sm text-emerald-600 underline-offset-2 transition-colors hover:text-emerald-700 hover:underline dark:text-emerald-500"
+        className="text-sm text-yield-accent text-yield-accent-hover underline-offset-2 transition-colors hover:underline"
       >
         ← Check a wallet
       </Link>

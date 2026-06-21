@@ -38,29 +38,29 @@ export default function MethodologyPage() {
       <ContentSection title="What to expect">
         <ul className="space-y-3 text-sm text-zinc-600 dark:text-zinc-300">
           <li className="flex gap-2">
-            <span className="text-emerald-600" aria-hidden>
+            <span className="text-yield-accent" aria-hidden>
               ·
             </span>
             Estimates use <strong className="font-medium text-zinc-800 dark:text-zinc-100">current</strong> balances and rates — not guaranteed future returns.
           </li>
           <li className="flex gap-2">
-            <span className="text-emerald-600" aria-hidden>
+            <span className="text-yield-accent" aria-hidden>
               ·
             </span>
             Only{" "}
-            <Link href="/supported" className="text-emerald-600 hover:underline">
+            <Link href="/supported" className="text-yield-accent hover:underline">
               supported protocols and networks
             </Link>{" "}
             are included.
           </li>
           <li className="flex gap-2">
-            <span className="text-emerald-600" aria-hidden>
+            <span className="text-yield-accent" aria-hidden>
               ·
             </span>
             Small positions (under $1) may be hidden in the UI but still count toward totals.
           </li>
           <li className="flex gap-2">
-            <span className="text-emerald-600" aria-hidden>
+            <span className="text-yield-accent" aria-hidden>
               ·
             </span>
             This is informational only — not financial advice.

@@ -36,7 +36,7 @@ export function YieldOpportunity({ opportunity }: YieldOpportunityProps) {
           <dt className="shrink-0 text-xs font-medium uppercase tracking-wide text-zinc-500">
             Yield Opportunity
           </dt>
-          <dd className="text-right text-xl font-bold tabular-nums text-emerald-600 sm:text-2xl">
+          <dd className="text-right text-xl font-bold tabular-nums text-yield-accent sm:text-2xl">
             {hasOpportunity ? "+" : ""}
             {formatUsd(summary.additionalMonthlyUsd)}
             <span className="text-sm font-normal text-zinc-400">/mo</span>

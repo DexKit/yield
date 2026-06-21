@@ -12,7 +12,7 @@ export function Header() {
         >
           <SiteLogo alt="" priority decorative />
           <span className="translate-y-px">
-            Yield <span className="text-emerald-600">by DexKit</span>
+            Yield <span className="text-yield-accent">by DexKit</span>
           </span>
           <span className="sr-only">{SITE_NAME}</span>
         </Link>

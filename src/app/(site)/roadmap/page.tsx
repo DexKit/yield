@@ -26,7 +26,7 @@ const STATUS_LABELS: Record<RoadmapStatus, string> = {
 };
 
 const STATUS_STYLES: Record<RoadmapStatus, string> = {
-  shipped: "text-emerald-600",
+  shipped: "text-yield-accent",
   "in-progress": "text-amber-600",
   planned: "text-zinc-400",
 };
@@ -77,7 +77,7 @@ export default function RoadmapPage() {
               key={item}
               className="flex items-start gap-2 rounded-lg border border-zinc-100 bg-zinc-50 px-4 py-3 text-sm text-zinc-600 dark:border-zinc-800 dark:bg-zinc-900/50 dark:text-zinc-300"
             >
-              <span className="text-emerald-600" aria-hidden>
+              <span className="text-yield-accent" aria-hidden>
                 ✓
               </span>
               {item}
@@ -107,14 +107,14 @@ export default function RoadmapPage() {
           href="https://github.com/DexKit/yield"
           target="_blank"
           rel="noopener noreferrer"
-          className="text-emerald-600 underline-offset-2 hover:underline"
+          className="text-yield-accent underline-offset-2 hover:underline"
         >
           GitHub
         </Link>
         . Current protocol coverage is on the{" "}
         <Link
           href="/supported"
-          className="text-emerald-600 underline-offset-2 hover:underline"
+          className="text-yield-accent underline-offset-2 hover:underline"
         >
           supported page
         </Link>

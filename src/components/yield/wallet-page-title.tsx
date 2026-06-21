@@ -15,8 +15,8 @@ export function WalletPageTitle({ result }: WalletPageTitleProps) {
       <span
         className={
           isAddress
-            ? "max-w-full px-1 font-mono text-base leading-relaxed break-all text-emerald-600 sm:text-lg"
-            : "leading-snug text-emerald-600"
+            ? "max-w-full px-1 font-mono text-base leading-relaxed break-all text-yield-accent sm:text-lg"
+            : "leading-snug text-yield-accent"
         }
       >
         {wallet}

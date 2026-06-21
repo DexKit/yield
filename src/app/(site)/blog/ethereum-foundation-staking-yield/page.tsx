@@ -110,7 +110,7 @@ export default async function EthereumFoundationStakingPost() {
           <dt className="text-xs uppercase tracking-wider text-zinc-400">
             If staked
           </dt>
-          <dd className="mt-1 text-2xl font-bold text-emerald-600 sm:text-3xl">
+          <dd className="mt-1 text-2xl font-bold text-yield-accent sm:text-3xl">
             {formatMoney(data.monthlyYieldUsd)}
             <span className="block text-xs font-normal text-zinc-400">/mo</span>
           </dd>
@@ -144,14 +144,14 @@ export default async function EthereumFoundationStakingPost() {
         Live wallet balance + Lido APY.{" "}
         <Link
           href={walletPath}
-          className="text-emerald-600 underline-offset-2 hover:underline"
+          className="text-yield-accent underline-offset-2 hover:underline"
         >
           View wallet
         </Link>
         {" · "}
         <Link
           href={cardPath}
-          className="text-emerald-600 underline-offset-2 hover:underline"
+          className="text-yield-accent underline-offset-2 hover:underline"
         >
           Open PNG
         </Link>
