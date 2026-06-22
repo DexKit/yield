@@ -2,10 +2,12 @@ import type { ProtocolId } from "@/types/protocol";
 import type { ChainId } from "@/types/chain";
 import type { Address } from "viem";
 import { EVM_CHAIN_NUMERIC, getEthereumClient } from "@/lib/chains/clients";
+import { fetchWithTimeout } from "@/lib/http/fetch-with-timeout";
 import { fetchMorphoVaultNetApy } from "@/lib/protocols/morpho-vault-apy";
 import { fetchWeethsApyFromChain } from "@/lib/protocols/etherfi-weeths";
 import { fetchSwellApyFromChain } from "@/lib/protocols/swell-rates";
 import { PROTOCOL_CONFIGS } from "@/lib/protocols/tokens";
+import { getDefiLlamaPools } from "@/lib/services/defillama-pools";
 
 /** Fallback APY rates when live APIs are unavailable (annual %). */
 const FALLBACK_APY: Record<string, number> = {
@@ -95,9 +97,10 @@ function setCache(key: string, apy: number): void {
 
 async function fetchLidoApy(): Promise<number | null> {
   try {
-    const res = await fetch("https://eth-api.lido.fi/v1/protocol/steth/apr/last", {
-      next: { revalidate: 300 },
-    });
+    const res = await fetchWithTimeout(
+      "https://eth-api.lido.fi/v1/protocol/steth/apr/last",
+      { next: { revalidate: 300 } },
+    );
     if (!res.ok) return null;
     const data = (await res.json()) as { data?: { apr?: number } };
     const apr = data.data?.apr;
@@ -111,7 +114,7 @@ async function fetchLidoApy(): Promise<number | null> {
 /** Ether.fi public APR feed — same source as app.ether.fi UI. */
 async function fetchEtherFiApy(): Promise<number | null> {
   try {
-    const res = await fetch("https://www.etherfi.bid/api/etherfi/apr", {
+    const res = await fetchWithTimeout("https://www.etherfi.bid/api/etherfi/apr", {
       next: { revalidate: 300 },
     });
     if (!res.ok) return null;
@@ -130,14 +133,9 @@ async function fetchEtherFiApy(): Promise<number | null> {
 
 async function fetchDefiLlamaApy(protocol: string, pool: string): Promise<number | null> {
   try {
-    const res = await fetch(`https://yields.llama.fi/pools`, {
-      next: { revalidate: 300 },
-    });
-    if (!res.ok) return null;
-    const data = (await res.json()) as {
-      data?: Array<{ project: string; symbol: string; apy: number }>;
-    };
-    const match = data.data?.find(
+    const pools = await getDefiLlamaPools();
+    if (!pools) return null;
+    const match = pools.find(
       (p) =>
         p.project.toLowerCase().includes(protocol) &&
         p.symbol.toLowerCase().includes(pool.toLowerCase()),
@@ -154,17 +152,12 @@ async function fetchDefiLlamaApyExact(
   symbol: string,
 ): Promise<number | null> {
   try {
-    const res = await fetch(`https://yields.llama.fi/pools`, {
-      next: { revalidate: 300 },
-    });
-    if (!res.ok) return null;
-    const data = (await res.json()) as {
-      data?: Array<{ project: string; symbol: string; apy: number; tvlUsd?: number }>;
-    };
+    const pools = await getDefiLlamaPools();
+    if (!pools) return null;
     const projectLower = project.toLowerCase();
     const symbolLower = symbol.toLowerCase();
     const matches =
-      data.data?.filter(
+      pools.filter(
         (p) =>
           p.project.toLowerCase() === projectLower &&
           p.symbol.toLowerCase() === symbolLower,
@@ -216,7 +209,7 @@ const SPARKLEND_DEFILLAMA_SYMBOL: Record<string, string> = {
 
 async function fetchEthenaSusdeApy(): Promise<number | null> {
   try {
-    const res = await fetch(
+    const res = await fetchWithTimeout(
       "https://app.ethena.fi/api/yields/protocol-and-staking-yield",
       { next: { revalidate: 300 } },
     );

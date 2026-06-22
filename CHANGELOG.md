@@ -10,6 +10,10 @@ All notable changes to Yield by DexKit.
 
 ### Added
 
+- **Blog: 10% of validator revenue**
+  - `/blog/validator-revenue-10-percent-funding` — staking yield math, 50%/70% scenarios, EF grant comparison
+  - Dynamic card: `/card/compare-validator-revenue-10pct.png`
+
 - **Methodology page** (`/methodology`) — balance detection → protocol ID → APY source → yield estimation; linked from footer and calculation modal
 
 - **Blog: Ethereum Foundation staking yield**

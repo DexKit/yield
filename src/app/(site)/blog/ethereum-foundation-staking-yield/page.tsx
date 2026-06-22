@@ -26,6 +26,7 @@ import { notFound } from "next/navigation";
 const POST_SLUG = "ethereum-foundation-staking-yield";
 
 export const revalidate = 300;
+export const dynamic = "force-dynamic";
 
 export async function generateMetadata(): Promise<Metadata> {
   const post = getBlogPost(POST_SLUG);

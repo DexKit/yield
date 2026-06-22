@@ -8,6 +8,14 @@ export interface BlogPostMeta {
 
 export const BLOG_POSTS: BlogPostMeta[] = [
   {
+    slug: "validator-revenue-10-percent-funding",
+    title: "How Much Could 10% of Ethereum Validator Revenue Fund?",
+    description:
+      "Estimate validator revenue at 1% and 10% redirects — vs core dev costs and EF grants — with 32%, 50%, and 70% stake scenarios. Based on the ethresear.ch validator-redirect debate.",
+    publishedAt: "2026-06-19",
+    cardPath: "/card/compare-validator-revenue-10pct.png",
+  },
+  {
     slug: "ethereum-foundation-staking-yield",
     title: "How Much Could the Ethereum Foundation Earn If They Staked Their ETH?",
     description:

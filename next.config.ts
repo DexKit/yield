@@ -21,6 +21,9 @@ const nextConfig: NextConfig = {
   turbopack: {
     root: projectRoot,
   },
+  experimental: {
+    optimizePackageImports: ["viem", "lucide-react"],
+  },
   async headers() {
     return [
       {

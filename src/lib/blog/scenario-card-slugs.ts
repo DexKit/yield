@@ -2,6 +2,7 @@
 export const SCENARIO_CARD_SLUGS = {
   strategyEthereum: "compare-strategy-ethereum",
   foundationStaking: "compare-ethereum-foundation-staking",
+  validatorRevenueTenPct: "compare-validator-revenue-10pct",
 } as const;
 
 export type ScenarioCardSlug =

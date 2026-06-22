@@ -1,3 +1,5 @@
+import { fetchWithTimeout } from "@/lib/http/fetch-with-timeout";
+
 const priceCache = new Map<string, { price: number; expiresAt: number }>();
 const CACHE_TTL_MS = 60 * 1000;
 
@@ -5,7 +7,7 @@ const STABLECOINS = new Set(["usd-coin", "tether", "dai", "susds", "frax", "usde
 
 async function fetchFromCoinGecko(symbol: string): Promise<number | null> {
   try {
-    const res = await fetch(
+    const res = await fetchWithTimeout(
       `https://api.coingecko.com/api/v3/simple/price?ids=${symbol}&vs_currencies=usd`,
       { next: { revalidate: 60 } },
     );

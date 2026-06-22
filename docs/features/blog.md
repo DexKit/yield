@@ -6,8 +6,21 @@ Short, shareable posts with **live dynamic PNG cards**.
 
 | URL | Card |
 |-----|------|
+| `/blog/validator-revenue-10-percent-funding` | `/card/compare-validator-revenue-10pct.png` |
 | `/blog/ethereum-foundation-staking-yield` | `/card/compare-ethereum-foundation-staking.png` |
 | `/blog/strategy-ethereum-yield` | `/card/compare-strategy-ethereum.png` |
+
+## Validator revenue 10% post
+
+**Hook:** [Validator Redirected Revenue](https://ethresear.ch/t/validator-redirected-revenue/25248) on Ethereum Research — debated on X — what if 1% or 10% of validator revenue funded core work?
+
+- Live circulating ETH + **spot ETH price** + ATH from CoinGecko (price labeled on page)
+- Live Lido stETH APY as network yield proxy
+- **1%** and **10%** redirect slices per scenario
+- **Live vs ATH** ETH price comparison (same stake/APY, USD scales)
+- Scenarios at **50%** and **70%** stake (APY scales down)
+- Compares to **~$30M/yr core dev floor** (Protocol Guild benchmark) and **EF ESP** grants (Q1 & Q4 2025)
+- Dynamic card: `/card/compare-validator-revenue-10pct.png`
 
 ## Ethereum Foundation staking post
 

@@ -21,6 +21,7 @@ import { notFound } from "next/navigation";
 const POST_SLUG = "strategy-ethereum-yield";
 
 export const revalidate = 300;
+export const dynamic = "force-dynamic";
 
 export async function generateMetadata(): Promise<Metadata> {
   const post = getBlogPost(POST_SLUG);

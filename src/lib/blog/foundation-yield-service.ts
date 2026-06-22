@@ -2,8 +2,8 @@ import { cache } from "react";
 import { scanIdleAssets } from "@/lib/opportunity/idle-asset-scanner";
 import { fetchApy } from "@/lib/services/apy-service";
 import { getTokenPriceUsd } from "@/lib/services/price-service";
-import { yieldService } from "@/lib/services/yield-service";
 import { computeYieldFromValue } from "@/lib/blog/yield-math";
+import type { WalletYieldResult } from "@/types/yield";
 
 /**
  * EF DeFi multisig — labeled on Etherscan, used for treasury DeFi participation.
@@ -44,6 +44,21 @@ function sumEthEquivalent(
   return { ethBalance, stakeValueUsd };
 }
 
+const BLOG_YIELD_TIMEOUT_MS = 6_000;
+
+/** Full wallet scan is slow; cap wait so blog pages do not hang compile/render. */
+async function fetchFoundationCurrentYield(
+  wallet: typeof ETHEREUM_FOUNDATION_WALLET,
+): Promise<WalletYieldResult | null> {
+  const { yieldService } = await import("@/lib/services/yield-service");
+  return Promise.race([
+    yieldService.calculateYield(wallet, "USD"),
+    new Promise<null>((resolve) =>
+      setTimeout(() => resolve(null), BLOG_YIELD_TIMEOUT_MS),
+    ),
+  ]);
+}
+
 async function calculateFoundationStakingYield(): Promise<FoundationStakingYieldResult> {
   const wallet = ETHEREUM_FOUNDATION_WALLET;
 
@@ -51,7 +66,7 @@ async function calculateFoundationStakingYield(): Promise<FoundationStakingYield
     scanIdleAssets(wallet),
     fetchApy("lido", "stETH", "ethereum"),
     getTokenPriceUsd("ethereum"),
-    yieldService.calculateYield(wallet, "USD"),
+    fetchFoundationCurrentYield(wallet),
   ]);
 
   const apyPercent = lidoApy ?? 3.1;
