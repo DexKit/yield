@@ -33,4 +33,5 @@ export const SITEMAP_CONTENT_PATHS = [
   "/blog/validator-revenue-10-percent-funding",
   "/blog/ethereum-foundation-staking-yield",
   "/blog/strategy-ethereum-yield",
+  "/blog/apple-ethereum-yield",
 ] as const;

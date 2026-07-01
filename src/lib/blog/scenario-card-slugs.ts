@@ -1,5 +1,6 @@
 /** Registered scenario card slugs (non-wallet PNG cards). */
 export const SCENARIO_CARD_SLUGS = {
+  appleEthereum: "compare-apple-ethereum",
   strategyEthereum: "compare-strategy-ethereum",
   foundationStaking: "compare-ethereum-foundation-staking",
   validatorRevenueTenPct: "compare-validator-revenue-10pct",

@@ -1,5 +1,10 @@
 import type { CardData, CardRenderOptions, CardSummary } from "@/lib/cards/types";
 import {
+  APPLE_COMPANY_NAME,
+  APPLE_ETH_ALLOCATION_PCT,
+  getCachedAppleEthereumYield,
+} from "@/lib/blog/apple-yield-service";
+import {
   getCachedFoundationStakingYield,
   ETHEREUM_FOUNDATION_NAME,
 } from "@/lib/blog/foundation-yield-service";
@@ -38,6 +43,34 @@ async function buildCardSummary(
     monthlyUsd: monthly,
     yearlyUsd: yearly,
     currency,
+  };
+}
+
+async function buildAppleScenarioCard(
+  options: CardRenderOptions,
+): Promise<CardData> {
+  const result = await getCachedAppleEthereumYield();
+  const summary = await buildCardSummary(
+    {
+      dailyUsd: result.dailyYieldUsd,
+      monthlyUsd: result.monthlyYieldUsd,
+      yearlyUsd: result.yearlyYieldUsd,
+    },
+    options.currency,
+  );
+
+  const treasuryLabel = formatCompactUsd(result.totalTreasuryUsd);
+
+  return {
+    cardType: "scenario",
+    walletLabel: `${APPLE_COMPANY_NAME} · ${APPLE_ETH_ALLOCATION_PCT}% in ETH?`,
+    subtitle: `${treasuryLabel} treasury · ${result.lidoApyPercent.toFixed(1)}% APY (Lido)`,
+    heroLine: `Estimated monthly yield if ${APPLE_ETH_ALLOCATION_PCT}% were staked ETH`,
+    comparisonLine: `≈${formatCompactAmount(result.equivalentEth)} ETH · ${result.pctOfEthSupply.toFixed(0)}% of supply`,
+    footerLine: `${APPLE_COMPANY_NAME} · Powered by DexKit`,
+    summary,
+    theme: options.theme,
+    calculatedAt: result.calculatedAt,
   };
 }
 
@@ -147,6 +180,8 @@ export async function buildScenarioCardData(
   options: CardRenderOptions,
 ): Promise<CardData | null> {
   switch (slug) {
+    case SCENARIO_CARD_SLUGS.appleEthereum:
+      return buildAppleScenarioCard(options);
     case SCENARIO_CARD_SLUGS.strategyEthereum:
       return buildStrategyScenarioCard(options);
     case SCENARIO_CARD_SLUGS.foundationStaking:

@@ -8,6 +8,14 @@ export interface BlogPostMeta {
 
 export const BLOG_POSTS: BlogPostMeta[] = [
   {
+    slug: "apple-ethereum-yield",
+    title: "Apple's $147B Treasury: What If 50% Were Staked ETH?",
+    description:
+      "Apple holds $147B in cash and securities. See how much monthly yield 50% would earn staked via Lido — and why it would dwarf every corporate ETH treasury combined.",
+    publishedAt: "2026-06-27",
+    cardPath: "/card/compare-apple-ethereum.png",
+  },
+  {
     slug: "validator-revenue-10-percent-funding",
     title: "How Much Could 10% of Ethereum Validator Revenue Fund?",
     description:

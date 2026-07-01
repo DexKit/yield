@@ -6,6 +6,7 @@ Short, shareable posts with **live dynamic PNG cards**.
 
 | URL | Card |
 |-----|------|
+| `/blog/apple-ethereum-yield` | `/card/compare-apple-ethereum.png` |
 | `/blog/validator-revenue-10-percent-funding` | `/card/compare-validator-revenue-10pct.png` |
 | `/blog/ethereum-foundation-staking-yield` | `/card/compare-ethereum-foundation-staking.png` |
 | `/blog/strategy-ethereum-yield` | `/card/compare-strategy-ethereum.png` |
@@ -43,6 +44,19 @@ Short, shareable posts with **live dynamic PNG cards**.
 
 > Strategy (MSTR) holds 528k BTC. Same value in ETH (Lido) → $XM/month in yield. Bitcoin earns $0.
 
+## Apple / ETH yield post
+
+**Hook:** Apple holds ~$147B in cash & marketable securities (FY2026 Q2). What if 50% were staked ETH?
+
+- Treasury from Apple 10-Q (Mar 28, 2026): cash + current + non-current marketable securities
+- Live ETH price + Lido stETH APY + circulating supply (CoinGecko)
+- **50%** allocation scenario with supply / market-cap context vs corp treasuries
+- Dynamic card: `/card/compare-apple-ethereum.png`
+
+**Share copy (auto-generated on page):**
+
+> Apple (AAPL) holds $147B in cash & securities. If 50% were staked ETH (Lido) → $XM/month in yield.
+
 ## Adding a post
 
 1. Add metadata to `src/lib/blog/posts.ts`
@@ -67,4 +81,4 @@ Example embed:
 
 ---
 
-Last updated: 2026-06-18
+Last updated: 2026-06-27

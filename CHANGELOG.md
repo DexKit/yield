@@ -10,6 +10,10 @@ All notable changes to Yield by DexKit.
 
 ### Added
 
+- **Blog: Apple treasury ETH yield**
+  - `/blog/apple-ethereum-yield` — 50% of $147B liquid treasury → hypothetical Lido staking yield + supply impact context
+  - Dynamic card: `/card/compare-apple-ethereum.png` (live ETH price + Lido APY)
+
 - **Blog: 10% of validator revenue**
   - `/blog/validator-revenue-10-percent-funding` — staking yield math, 50%/70% scenarios, EF grant comparison
   - Dynamic card: `/card/compare-validator-revenue-10pct.png`
